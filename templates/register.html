@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <div class="navbar-wrapper">
+      <div class="container">
+
+        <div class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/">&nbsp;&nbsp;Notes&nbsp;&nbsp;</a>
+            </div>
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li class="active"><a href="/accounts/register/">Register</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+     <div class="container marketing">
+	<form action="/accounts/register/" method="post" class="form-horizontal">{% csrf_token %}
+  		<fieldset>
+    		  <legend>Register</legend>
+    		    {% if form.non_field_errors %}
+    		        <div class="alert alert-danger">
+        		      {{ form.non_field_errors }}
+      		      </div>
+      		  {% endif %}
+
+      		{% if form.username.errors %}
+    		<div class="alert alert-danger">
+        		{{ form.username.errors }}
+      		</div>
+      		{% endif %}
+
+      		{% if form.password1.errors %}
+    		<div class="alert alert-danger">
+        		{{ form.password1.errors }}
+      		</div>
+      		{% endif %}
+
+      		{% if form.password2.errors %}
+    		<div class="alert alert-danger">
+        		{{ form.password2.errors }}
+      		</div>
+      		{% endif %}
+
+    		<div class="form-group">
+      			<label for="id_username" class="col-lg-2 control-label">Username:</label>
+      			<div class="col-lg-10">
+        			{{ form.username }}
+      			</div>
+      		</div>
+        	<div class="form-group">
+      			<label for="id_password1" class="col-lg-2 control-label">Password:</label>
+      			<div class="col-lg-10">
+        			{{ form.password1 }}
+      			</div>
+    		</div>
+        	<div class="form-group">
+      			<label for="id_password2" class="col-lg-2 control-label">Confirm Password:</label>
+      			<div class="col-lg-10">
+        			{{ form.password2 }}
+      			</div>
+    		</div>
+    	    <div class="form-group">
+      			<div class="col-lg-10 col-lg-offset-2">
+        			<button class="btn btn-default">Cancel</button>
+        			<button type="submit" class="btn btn-primary">Submit</button>
+      			</div>
+    		</div>
+    		<div class="form-group">
+    	    	<label for="textArea" class="col-lg-2 control-label">&nbsp;</label>
+      			<div class="col-lg-10">
+        			<span class="help-block">Already signed up? <a href="/accounts/login/">Click here</a> to login.</span>
+      			</div>
+    		</div>
+      	</fieldset>
+    </form>
+{% endblock %}

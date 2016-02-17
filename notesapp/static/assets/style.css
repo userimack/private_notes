@@ -1,0 +1,4 @@
+ html, *{ 
+     background-image: url('../canvas.jpg');
+     background-repeat: repeat; 
+ }
